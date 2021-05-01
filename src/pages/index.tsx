@@ -7,7 +7,7 @@ import ptBR from "date-fns/locale/pt-BR";
 
 import { api } from "../services/api";
 import { converDurationToTimeString } from "../utils/convertDurationToTimeString";
-import { PlayerContext } from "../components/contexts/PlayerContext";
+import { PlayerContext } from "../contexts/PlayerContext";
 
 import styles from "./home.module.scss";
 
