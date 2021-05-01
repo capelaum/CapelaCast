@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "server": "json-server server.json -w -d -p $PORT"
+    "start-server": "node server.js",
+    "server": "json-server server.json -w -d --port 3333"
   },
   "dependencies": {
     "axios": "^0.21.1",
