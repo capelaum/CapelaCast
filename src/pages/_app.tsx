@@ -5,9 +5,14 @@ import { Player } from "../components/Player";
 import { PlayerContext, PlayerContextProvider } from "../contexts/PlayerContext";
 
 import styles from "../styles/app.module.scss";
+import Head  from "next/head";
 
 function MyApp({ Component, pageProps }) {
   return(
+    <>
+    <Head>
+      <title>CapelaCast</title>
+    </Head>
     <PlayerContextProvider>
       <div className={styles.wrapper}>
         <main>
@@ -17,6 +22,7 @@ function MyApp({ Component, pageProps }) {
         <Player />
       </div>
     </PlayerContextProvider>
+    </>
   );
 }
 

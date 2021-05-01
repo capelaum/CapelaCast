@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Slider from "rc-slider";
 
@@ -19,6 +19,7 @@ export function Player() {
     toggleLoop,
     toggleShuffle,
     setPlayingState,
+    clearPlayerState,
     playNext,
     playPrevious,
     hasNext,
@@ -27,6 +28,7 @@ export function Player() {
 
   const episode = episodeList[currentEpisodeIndex];
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (!audioRef.current) {
@@ -39,6 +41,27 @@ export function Player() {
       audioRef.current.pause();
     }
   }, [isPlaying]);
+
+  function setProgressListener() {
+    audioRef.current.currentTime = 0;
+
+    audioRef.current.addEventListener("timeupdate", () => {
+      setProgress(Math.floor(audioRef.current.currentTime));
+    });
+  }
+
+  function handleProgress(amount: number) {
+    audioRef.current.currentTime = amount;
+    setProgress(amount);
+  }
+
+  function handleEpisodeEnded() {
+    if(hasNext) {
+      playNext();
+    } else {
+      clearPlayerState();
+    }
+  }
 
   return (
     <div className={styles.playerContainer}>
@@ -66,10 +89,13 @@ export function Player() {
 
       <footer className={!episode ? styles.empty : ""}>
         <div className={styles.progress}>
-          <span>00:00</span>
+          <span>{convertDurationToTimeString(progress)}</span>
           <div className={styles.slider}>
             {episode ? (
               <Slider
+                max={episode.duration}
+                value={progress}
+                onChange={handleProgress}
                 trackStyle={{ backgroundColor: "#04d361" }}
                 railStyle={{ backgroundColor: "#9f75ff" }}
                 handleStyle={{ backgroundColor: "#04d361", borderWidth: 3 }}
@@ -87,8 +113,10 @@ export function Player() {
             ref={audioRef}
             loop={isLooping}
             autoPlay
+            onEnded={handleEpisodeEnded}
             onPlay={() => setPlayingState(true)}
             onPause={() => setPlayingState(false)}
+            onLoadedMetadata={setProgressListener}
           ></audio>
         )}
 
