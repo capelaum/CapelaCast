@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "start-server": "node server.js",
     "server": "json-server server.json -w -d --port 3333"
   },
   "dependencies": {

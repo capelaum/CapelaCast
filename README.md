@@ -11,6 +11,8 @@
 
 <h4 align="center">
   CapelaCast is a platform built for podcast broadcasting.
+
+  Vercel Project Link: [CapelaCast](https://capelacast.vercel.app) 
 </h4>
 
 ![CapelaCast preview](.github/app-preview.png)
@@ -48,11 +50,6 @@ Install the dependencies
 $ yarn
 ```
 
-Run the backend fake server from server.json at http://localhost:3333
-```bash
-$ yarn server
-```
-
 Run the web server
 
 ```bash
@@ -60,6 +57,16 @@ $ yarn dev
 ```
 
 The app will be available for access on your browser at [http://localhost:3000](http://localhost:3000)
+
+## Server 
+
+JSON server was deployed in Heroku: https://capelacast-server.herokuapp.com
+
+Run the backend fake server locally from server.json at http://localhost:3333 changing the file `services/api.ts`  and running the command below.
+
+```bash
+$ yarn server
+```
 
 ### 📝 MIT License
 
