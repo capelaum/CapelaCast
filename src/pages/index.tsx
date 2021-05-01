@@ -5,7 +5,7 @@ import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 
 import { api } from "../services/api";
-import { converDurationToTimeString } from "../utils/convertDurationToTimeString";
+import { convertDurationToTimeString } from "../utils/convertDurationToTimeString";
 import { usePlayer } from "../contexts/PlayerContext";
 
 import styles from "./home.module.scss";
@@ -136,7 +136,7 @@ export const getStaticProps: GetStaticProps = async () => {
       thumbnail: episode.thumbnail,
       url: episode.file.url,
       duration: Number(episode.file.duration),
-      durationString: converDurationToTimeString(Number(episode.file.duration)),
+      durationString: convertDurationToTimeString(Number(episode.file.duration)),
     };
   });
 
