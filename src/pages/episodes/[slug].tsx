@@ -1,35 +1,32 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import Head from "next/head";
-
-import { format, parseISO } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
-
-import { api } from "../../services/api";
-import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
-import { usePlayer } from "../../contexts/PlayerContext";
-
-import styles from "./episode.module.scss";
+import { format, parseISO } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePlayer } from '../../contexts/PlayerContext'
+import { api } from '../../services/api'
+import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'
+import styles from './episode.module.scss'
 
 type Episode = {
-  id: string;
-  title: string;
-  members: string;
-  publishedAt: string;
-  thumbnail: string;
-  description: string;
-  url: string;
-  duration: number;
-  durationString: string;
-};
+  id: string
+  title: string
+  members: string
+  publishedAt: string
+  thumbnail: string
+  description: string
+  url: string
+  duration: number
+  durationString: string
+}
 
 type EpisodeProps = {
-  episode: Episode;
-};
+  episode: Episode
+}
 
 export default function Episode({ episode }: EpisodeProps) {
-  const { play } = usePlayer();
+  const { play } = usePlayer()
 
   return (
     <div className={styles.episode}>
@@ -65,54 +62,54 @@ export default function Episode({ episode }: EpisodeProps) {
         dangerouslySetInnerHTML={{ __html: episode.description }} // necessario para não haver code injection
       />
     </div>
-  );
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await api.get("episodes", {
+  const { data } = await api.get('episodes', {
     params: {
       _limit: 2,
-      _sort: "published_at",
-      _order: "desc",
-    },
-  });
+      _sort: 'published_at',
+      _order: 'desc'
+    }
+  })
 
-  const paths = data.map(episode => {
+  const paths = data.map((episode) => {
     return {
       params: {
-        slug: episode.id,
-      },
-    };
-  });
+        slug: episode.id
+      }
+    }
+  })
 
   return {
     paths,
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking'
+  }
+}
 
-export const getStaticProps: GetStaticProps = async context => {
-  const { slug } = context.params;
-  const { data } = await api.get(`/episodes/${slug}`);
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { slug } = context.params
+  const { data } = await api.get(`/episodes/${slug}`)
 
   const episode = {
     id: data.id,
     title: data.title,
     members: data.members,
-    publishedAt: format(parseISO(data.published_at), "d MMM yy", {
-      locale: ptBR,
+    publishedAt: format(parseISO(data.published_at), 'd MMM yy', {
+      locale: ptBR
     }),
     thumbnail: data.thumbnail,
     description: data.description,
     url: data.file.url,
     duration: Number(data.file.duration),
-    durationString: convertDurationToTimeString(Number(data.file.duration)),
-  };
+    durationString: convertDurationToTimeString(Number(data.file.duration))
+  }
 
   return {
     props: {
-      episode,
+      episode
     },
-    revalidate: 60 * 60 * 24, // 24h em segundos
-  };
-};
+    revalidate: 60 * 60 * 24 // 24h em segundos
+  }
+}
