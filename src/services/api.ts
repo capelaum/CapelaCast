@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-let port = process.env.PORT || 3333
+const baseURL =
+  process.env.ENV === 'dev'
+    ? 'http://localhost:3333'
+    : 'https://capelaum-json-server.herokuapp.com'
 
-// change baseURL to localhost:3333 to run server locally
 export const api = axios.create({
-  baseURL: 'https://capelaum-json-server.herokuapp.com'
+  baseURL
 })
