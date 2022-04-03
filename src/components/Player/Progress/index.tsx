@@ -1,10 +1,10 @@
-import { Episode } from 'contexts/PlayerContext'
 import Slider from 'rc-slider'
 import { convertDurationToTimeString } from 'utils/convertDurationToTimeString'
+import { EpisodeInfo } from 'utils/types'
 import styles from './styles.module.scss'
 
 interface ProgressProps {
-  episode: Episode
+  episode: EpisodeInfo
   progress: number
   handleProgress: (amount: number) => void
 }

@@ -1,21 +1,14 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
-
-export type Episode = {
-  title: string
-  members: string
-  thumbnail: string
-  duration: number
-  url: string
-}
+import { EpisodeInfo } from 'utils/types'
 
 type PlayerContextData = {
-  episodeList: Episode[]
+  episodeList: EpisodeInfo[]
   currentEpisodeIndex: number
   isPlaying: boolean
   isLooping: boolean
   isShuffling: boolean
-  play: (episode: Episode) => void
-  playList: (list: Episode[], index: number) => void
+  play: (episode: EpisodeInfo) => void
+  playList: (list: EpisodeInfo[], index: number) => void
   togglePlay: () => void
   toggleLoop: () => void
   toggleShuffle: () => void
@@ -42,13 +35,13 @@ export function PlayerContextProvider({
   const [isLooping, setIsLooping] = useState(false)
   const [isShuffling, setIsShuffling] = useState(false)
 
-  function play(episode: Episode) {
+  function play(episode: EpisodeInfo) {
     setEpisodeList([episode])
     setCurrentEpisodeIndex(0)
     setIsPlaying(true)
   }
 
-  function playList(list: Episode[], index: number) {
+  function playList(list: EpisodeInfo[], index: number) {
     setEpisodeList(list)
     setCurrentEpisodeIndex(index)
     setIsPlaying(true)

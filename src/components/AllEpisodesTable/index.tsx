@@ -1,4 +1,4 @@
-import { Episode } from 'pages'
+import { Episode } from 'utils/types'
 import { EpisodeRow } from './Episode'
 import styles from './styles.module.scss'
 

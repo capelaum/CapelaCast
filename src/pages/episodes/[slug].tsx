@@ -4,28 +4,17 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Episode } from 'utils/types'
 import { usePlayer } from '../../contexts/PlayerContext'
 import { api } from '../../services/api'
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'
 import styles from './episode.module.scss'
 
-type Episode = {
-  id: string
-  title: string
-  members: string
-  publishedAt: string
-  thumbnail: string
-  description: string
-  url: string
-  duration: number
-  durationString: string
-}
-
 type EpisodeProps = {
   episode: Episode
 }
 
-export default function Episode({ episode }: EpisodeProps) {
+export default function Episodes({ episode }: EpisodeProps) {
   const { play } = usePlayer()
 
   return (

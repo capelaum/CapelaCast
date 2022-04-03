@@ -1,8 +1,9 @@
-import { Episode, usePlayer } from 'contexts/PlayerContext'
+import { usePlayer } from 'contexts/PlayerContext'
+import { EpisodeInfo } from 'utils/types'
 import styles from './styles.module.scss'
 
 interface ButtonsProps {
-  episode: Episode
+  episode: EpisodeInfo
 }
 
 export function Buttons({ episode }: ButtonsProps) {

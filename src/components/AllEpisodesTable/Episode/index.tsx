@@ -1,7 +1,7 @@
 import { usePlayer } from 'contexts/PlayerContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Episode } from 'pages'
+import { Episode } from 'utils/types'
 import styles from './styles.module.scss'
 
 interface EpisodeProps {

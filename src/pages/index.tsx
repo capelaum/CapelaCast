@@ -5,19 +5,9 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import styles from 'styles/home.module.scss'
+import { Episode } from 'utils/types'
 import { api } from '../services/api'
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString'
-
-export type Episode = {
-  id: string
-  title: string
-  members: string
-  publishedAt: string
-  thumbnail: string
-  url: string
-  duration: number
-  durationString: string
-}
 
 type HomeProps = {
   latestEpisodes: Episode[]
