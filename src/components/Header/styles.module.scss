@@ -21,3 +21,29 @@
     text-transform: capitalize;
   }
 }
+
+@media (max-width: 768px) {
+  .headerContainer {
+    height: 5rem;
+    padding: 2rem 1.5rem;
+
+    img {
+      width: 8rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+      margin-left: 1rem;
+      padding: 0.25rem 0 0.25rem 2rem;
+      border-left: 1px solid var(--purple-400);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .headerContainer {
+    p {
+      display: none;
+    }
+  }
+}
