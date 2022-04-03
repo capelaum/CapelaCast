@@ -5,15 +5,12 @@ import { Episode } from 'utils/types'
 import styles from './styles.module.scss'
 
 interface LatestEpisodesProps {
-  latestEpisodes: Episode[]
-  episodeList: Episode[]
+  episodes: Episode[]
 }
 
-export function LatestEpisodes({
-  latestEpisodes,
-  episodeList
-}: LatestEpisodesProps) {
+export function LatestEpisodes({ episodes }: LatestEpisodesProps) {
   const { playList } = usePlayer()
+  const latestEpisodes = episodes.slice(0, 2)
 
   return (
     <section className={styles.latestEpisodes}>
@@ -40,10 +37,7 @@ export function LatestEpisodes({
                 <span>{episode.durationString}</span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => playList(episodeList, index)}
-              >
+              <button type="button" onClick={() => playList(episodes, index)}>
                 <img src="/play-green.svg" alt="Tocar Episódio" />
               </button>
             </li>

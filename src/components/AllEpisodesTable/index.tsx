@@ -1,18 +1,14 @@
 import { Episode } from 'utils/types'
-import { EpisodeRow } from './Episode'
+import { EpisodeRow } from './EpisodeRow'
 import styles from './styles.module.scss'
 
 interface AllEpisodesTableProps {
-  latestEpisodes: Episode[]
-  allEpisodes: Episode[]
-  episodeList: Episode[]
+  episodes: Episode[]
 }
 
-export function AllEpisodesTable({
-  allEpisodes,
-  episodeList,
-  latestEpisodes
-}: AllEpisodesTableProps) {
+export function AllEpisodesTable({ episodes }: AllEpisodesTableProps) {
+  const olderEpisodes = episodes.slice(2, episodes.length)
+
   return (
     <section className={styles.allEpisodes}>
       <h2>Todos episódios</h2>
@@ -28,13 +24,12 @@ export function AllEpisodesTable({
           </tr>
         </thead>
         <tbody>
-          {allEpisodes.map((episode, index) => (
+          {olderEpisodes.map((episode, index) => (
             <EpisodeRow
               key={episode.id}
               episode={episode}
               index={index}
-              episodeList={episodeList}
-              latestEpisodes={latestEpisodes}
+              episodes={episodes}
             />
           ))}
         </tbody>

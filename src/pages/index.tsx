@@ -10,29 +10,19 @@ import { api } from '../services/api'
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString'
 
 type HomeProps = {
-  latestEpisodes: Episode[]
-  allEpisodes: Episode[]
+  episodes: Episode[]
 }
 
-export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-  const episodeList = [...latestEpisodes, ...allEpisodes]
-
+export default function Home({ episodes }: HomeProps) {
   return (
     <div className={styles.homepage}>
       <Head>
         <title>Home | CapelaCast</title>
       </Head>
 
-      <LatestEpisodes
-        latestEpisodes={latestEpisodes}
-        episodeList={episodeList}
-      />
+      <LatestEpisodes episodes={episodes} />
 
-      <AllEpisodesTable
-        allEpisodes={allEpisodes}
-        latestEpisodes={latestEpisodes}
-        episodeList={episodeList}
-      />
+      <AllEpisodesTable episodes={episodes} />
     </div>
   )
 }
@@ -61,13 +51,9 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
 
-  const latestEpisodes = episodes.slice(0, 2)
-  const allEpisodes = episodes.slice(2, episodes.length)
-
   return {
     props: {
-      latestEpisodes,
-      allEpisodes
+      episodes
     },
     revalidate: 60 * 60 * 4 // 4h em segundos
   }

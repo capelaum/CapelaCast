@@ -6,25 +6,20 @@ import styles from './styles.module.scss'
 
 interface EpisodeProps {
   episode: Episode
-  episodeList: Episode[]
-  latestEpisodes: Episode[]
+  episodes: Episode[]
   index: number
 }
 
-export function EpisodeRow({
-  episode,
-  episodeList,
-  index,
-  latestEpisodes
-}: EpisodeProps) {
+export function EpisodeRow({ episode, episodes, index }: EpisodeProps) {
   const { playList } = usePlayer()
+  const latestEpisodes = episodes.slice(0, 2)
 
   return (
     <tr className={styles.episode}>
       <td>
         <button
           type="button"
-          onClick={() => playList(episodeList, index + latestEpisodes.length)}
+          onClick={() => playList(episodes, index + latestEpisodes.length)}
         >
           <img src="/play-green.svg" alt="Tocar episódio" />
         </button>
