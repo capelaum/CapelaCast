@@ -78,7 +78,7 @@ export function Player() {
         </div>
       )}
 
-      <div className={!episode ? styles.empty : styles.controls}>
+      <div className={styles.controls}>
         {episode && (
           <audio
             src={episode.url}

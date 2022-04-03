@@ -20,7 +20,7 @@ export function EpisodeRow({
   const { playList } = usePlayer()
 
   return (
-    <tr key={episode.id} className={styles.episode}>
+    <tr className={styles.episode}>
       <td>
         <button
           type="button"

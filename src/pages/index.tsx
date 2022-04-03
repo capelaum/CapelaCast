@@ -1,14 +1,12 @@
 import { AllEpisodesTable } from 'components/AllEpisodesTable'
+import { LatestEpisodes } from 'components/LatestEpisodes'
 import { format, parseISO } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePlayer } from '../contexts/PlayerContext'
+import styles from 'styles/home.module.scss'
 import { api } from '../services/api'
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString'
-import styles from './home.module.scss'
 
 export type Episode = {
   id: string
@@ -27,8 +25,6 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-  const { playList } = usePlayer()
-
   const episodeList = [...latestEpisodes, ...allEpisodes]
 
   return (
@@ -36,41 +32,11 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
       <Head>
         <title>Home | CapelaCast</title>
       </Head>
-      <section className={styles.latestEpisodes}>
-        <h2>Últimos lançamentos</h2>
 
-        <ul>
-          {latestEpisodes.map((episode, index) => {
-            return (
-              <li key={episode.id}>
-                <Image
-                  width={192}
-                  height={192}
-                  src={episode.thumbnail}
-                  alt={episode.title}
-                  objectFit="cover"
-                />
-
-                <div className={styles.episodeDetails}>
-                  <Link href={`/episodes/${episode.id}`}>
-                    <a>{episode.title}</a>
-                  </Link>
-                  <p>{episode.members}</p>
-                  <span>{episode.publishedAt}</span>
-                  <span>{episode.durationString}</span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => playList(episodeList, index)}
-                >
-                  <img src="/play-green.svg" alt="Tocar Episódio" />
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      </section>
+      <LatestEpisodes
+        latestEpisodes={latestEpisodes}
+        episodeList={episodeList}
+      />
 
       <AllEpisodesTable
         allEpisodes={allEpisodes}

@@ -30,6 +30,7 @@ export function AllEpisodesTable({
         <tbody>
           {allEpisodes.map((episode, index) => (
             <EpisodeRow
+              key={episode.id}
               episode={episode}
               index={index}
               episodeList={episodeList}

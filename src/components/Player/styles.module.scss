@@ -21,10 +21,6 @@
 .controls {
   width: 100%;
   margin-left: 2rem;
-
-  &.empty .progress {
-    opacity: 0.5;
-  }
 }
 
 .currentEpisode {
@@ -56,36 +52,36 @@
       line-height: 1.5rem;
     }
   }
+}
 
-  .emptyPlayer {
-    width: 80px;
-    height: 80px;
+.emptyPlayer {
+  width: 80px;
+  height: 80px;
 
-    border: 1.5px dashed var(--purple-300);
-    border-radius: 1.5rem;
+  border: 1.5px dashed var(--purple-300);
+  border-radius: 1.5rem;
 
-    background: linear-gradient(
-      143.8deg,
-      rgba(145, 100, 250, 0.8) 0%,
-      rgba(0, 0, 0, 0) 100%
-    );
+  background: linear-gradient(
+    143.8deg,
+    rgba(145, 100, 250, 0.8) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 
-    padding: 1rem;
-    text-align: center;
+  padding: 1rem;
+  text-align: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    strong {
-      font-size: 0.65rem;
-    }
+  strong {
+    font-size: 0.65rem;
   }
 }
 
 @media (max-width: 768px) {
   .playerContainer {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
 
     padding: 0.5rem 1.5rem;

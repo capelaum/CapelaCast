@@ -17,7 +17,6 @@
     }
 
     &:disabled {
-      cursor: not-allowed;
       opacity: 0.5;
     }
 
@@ -35,10 +34,22 @@
     }
 
     &.playButton {
-      width: 2.125rem;
-      height: 2.125rem;
+      display: grid;
+      place-items: center;
+
+      width: 2.5rem;
+      height: 2.5rem;
+
       border-radius: 50%;
       background: var(--purple-400);
+
+      img {
+        display: block;
+
+        width: 1.5rem;
+        height: 1.5rem;
+        overflow: hidden;
+      }
 
       &:hover:not(:disabled) {
         filter: brightness(0.95);
@@ -49,6 +60,6 @@
 
 @media (max-width: 768px) {
   .buttons {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 }
