@@ -1,4 +1,5 @@
 import { usePlayer } from 'contexts/PlayerContext'
+import Image from 'next/image'
 import { EpisodeInfo } from 'utils/types'
 import styles from './styles.module.scss'
 
@@ -29,7 +30,7 @@ export function Buttons({ episode }: ButtonsProps) {
         onClick={toggleShuffle}
         className={isShuffling ? styles.isActive : ''}
       >
-        <img src="/shuffle.svg" alt="Embaralhar" />
+        <Image src="/shuffle.svg" alt="Embaralhar" width={20} height={20} />
       </button>
 
       <button
@@ -37,7 +38,12 @@ export function Buttons({ episode }: ButtonsProps) {
         onClick={playPrevious}
         disabled={!episode || !hasPrevious}
       >
-        <img src="/play-previous.svg" alt="Tocar anterior" />
+        <Image
+          src="/play-previous.svg"
+          alt="Tocar anterior"
+          width={20}
+          height={20}
+        />
       </button>
 
       <button
@@ -47,14 +53,31 @@ export function Buttons({ episode }: ButtonsProps) {
         onClick={togglePlay}
       >
         {isPlaying ? (
-          <img src="/pause.svg" alt="Pausar" title="pausar" />
+          <Image
+            src="/pause.svg"
+            alt="Pausar"
+            title="pausar"
+            width={20}
+            height={20}
+          />
         ) : (
-          <img src="/play.svg" alt="Tocar" title="play" />
+          <Image
+            src="/play.svg"
+            alt="Tocar"
+            title="play"
+            width={28}
+            height={28}
+          />
         )}
       </button>
 
       <button type="button" onClick={playNext} disabled={!episode || !hasNext}>
-        <img src="/play-next.svg" alt="Tocar próxima" />
+        <Image
+          src="/play-next.svg"
+          alt="Tocar próxima"
+          width={20}
+          height={20}
+        />
       </button>
 
       <button
@@ -63,7 +86,7 @@ export function Buttons({ episode }: ButtonsProps) {
         onClick={toggleLoop}
         className={isLooping ? styles.isActive : ''}
       >
-        <img src="/repeat.svg" alt="Repetir" />
+        <Image src="/repeat.svg" alt="Repetir" width={20} height={20} />
       </button>
     </div>
   )

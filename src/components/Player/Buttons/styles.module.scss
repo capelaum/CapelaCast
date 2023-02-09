@@ -12,10 +12,6 @@
 
     transition: filter 0.2s;
 
-    img {
-      width: 1.25rem;
-    }
-
     &:disabled {
       opacity: 0.5;
     }
@@ -42,14 +38,6 @@
 
       border-radius: 50%;
       background: var(--purple-400);
-
-      img {
-        display: block;
-
-        width: 1.5rem;
-        height: 1.5rem;
-        overflow: hidden;
-      }
 
       &:hover:not(:disabled) {
         filter: brightness(0.95);
