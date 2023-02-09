@@ -12,6 +12,9 @@
 
     img {
       border-radius: 1rem;
+      width: 100%;
+      max-width: min-content;
+      object-fit: cover;
     }
 
     button {

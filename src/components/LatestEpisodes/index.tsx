@@ -24,21 +24,22 @@ export function LatestEpisodes({ episodes }: LatestEpisodesProps) {
                 height={180}
                 src={episode.thumbnail}
                 alt={episode.title}
-                layout="intrinsic"
-                objectFit="cover"
               />
 
               <div className={styles.episodeDetails}>
-                <Link href={`/episodes/${episode.id}`}>
-                  <a>{episode.title}</a>
-                </Link>
+                <Link href={`/episodes/${episode.id}`}>{episode.title}</Link>
                 <p>{episode.members}</p>
                 <span>{episode.publishedAt}</span>
                 <span>{episode.durationString}</span>
               </div>
 
               <button type="button" onClick={() => playList(episodes, index)}>
-                <img src="/play-green.svg" alt="Tocar Episódio" />
+                <Image
+                  src="/play-green.svg"
+                  alt="Tocar Episódio"
+                  width={20}
+                  height={20}
+                />
               </button>
             </li>
           )

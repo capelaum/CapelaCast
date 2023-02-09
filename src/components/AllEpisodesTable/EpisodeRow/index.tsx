@@ -21,7 +21,12 @@ export function EpisodeRow({ episode, episodes, index }: EpisodeProps) {
           type="button"
           onClick={() => playList(episodes, index + latestEpisodes.length)}
         >
-          <img src="/play-green.svg" alt="Tocar episódio" />
+          <Image
+            src="/play-green.svg"
+            alt="Tocar episódio"
+            width={20}
+            height={20}
+          />
         </button>
       </td>
       <td style={{ width: 72 }} className={styles.mobileNone}>
@@ -30,13 +35,10 @@ export function EpisodeRow({ episode, episodes, index }: EpisodeProps) {
           height={120}
           src={episode.thumbnail}
           alt={episode.title}
-          objectFit="cover"
         />
       </td>
       <td>
-        <Link href={`/episodes/${episode.id}`}>
-          <a>{episode.title}</a>
-        </Link>
+        <Link href={`/episodes/${episode.id}`}>{episode.title}</Link>
       </td>
       <td className={styles.mobileNone}>{episode.members}</td>
       <td style={{ width: 100 }} className={styles.mobileNone}>
