@@ -1,5 +1,6 @@
 import format from 'date-fns/format'
 import ptBR from 'date-fns/locale/pt-BR'
+import Image from 'next/image'
 import styles from './styles.module.scss'
 
 export function Header() {
@@ -9,7 +10,7 @@ export function Header() {
 
   return (
     <header className={styles.headerContainer}>
-      <img src="/logo.svg" alt="CapelaCast" />
+      <Image src="/logo.svg" alt="CapelaCast" width={120} height={120} />
 
       <p>O melhor para você ouvir, sempre</p>
       <span>{currentDate}</span>
