@@ -16,26 +16,28 @@ export default function Episodes() {
 
   const { slug } = router.query
 
-  const episode = episodes.find((episode) => episode.id === slug)
+  const episode = episodes?.find((episode) => episode.id === slug)
 
   const formattedEpisode = {
-    id: episode.id,
-    title: episode.title,
-    members: episode.members,
-    publishedAt: format(parseISO(episode.published_at), 'd MMM yy', {
-      locale: ptBR
-    }),
-    thumbnail: episode.thumbnail,
-    description: episode.description,
-    url: episode.file.url,
-    duration: Number(episode.file.duration),
-    durationString: convertDurationToTimeString(Number(episode.file.duration))
+    id: episode?.id,
+    title: episode?.title,
+    members: episode?.members,
+    publishedAt: episode
+      ? format(parseISO(episode?.published_at), 'd MMM yy', {
+          locale: ptBR
+        })
+      : '',
+    thumbnail: episode?.thumbnail,
+    description: episode?.description,
+    url: episode?.file.url,
+    duration: Number(episode?.file.duration),
+    durationString: convertDurationToTimeString(Number(episode?.file.duration))
   }
 
   return (
     <div className={styles.episode}>
       <Head>
-        <title>{episode.title} | CapelaCast</title>
+        <title>{formattedEpisode.title} | CapelaCast</title>
       </Head>
       <div className={styles.thumbnailContainer}>
         <Link href="/">
@@ -46,8 +48,8 @@ export default function Episodes() {
         <Image
           width={700}
           height={160}
-          src={episode.thumbnail}
-          alt={episode.title}
+          src={formattedEpisode.thumbnail}
+          alt={formattedEpisode.title}
         />
         <button type="button" onClick={() => play(formattedEpisode)}>
           <Image src="/play.svg" alt="Tocar episódio" width={30} height={30} />
