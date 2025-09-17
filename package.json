@@ -9,7 +9,7 @@
     "server": "json-server server.json -w -d --port 3333"
   },
   "dependencies": {
-    "axios": "^0.21.2",
+    "axios": "^1.12.0",
     "date-fns": "^2.21.1",
     "eslint-config-next": "^13.1.6",
     "next": "^13.1.6",
